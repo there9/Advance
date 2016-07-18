@@ -21,7 +21,6 @@ namespace TimeTable.Infra
     public class InsertOneTableEvent : PubSubEvent<object> { }
     //SelectTiemTable 시간 충돌 이벤트 (pub TotalTimeTable)(Sub ShowTimeTable SelectTalble)
     public class TimeTableConflictEvent : PubSubEvent<object> { }
-
     //SelectTiemTable 하나 삽입 버튼 또는 더블클릭 눌렀을 때의 이벤트 (pub SelectTimeTable)(Sub ShowTimeTable)
     public class RequestAddItemEvent : PubSubEvent<object> { }
 

@@ -12,6 +12,8 @@ namespace TimeTable.Infra
 {
     public class ClassInfo : BindableBase, IGridInfo
     {
+	//Excel Load Data Property
+        
         [ExcelColumn("교과목코드")] //maps the "Name" property to the "Company Title" column
         public string Code { get; set; }
 
@@ -51,10 +53,6 @@ namespace TimeTable.Infra
         [ExcelColumn("실")] //maps the "Employees" property to the "Employee Count" column
         public string practicetime { get; set; }
 
-
-
-
-
         [ExcelColumn("교시1")] //maps the "Employees" property to the "Employee Count" column
         public string time01 { get; set; }
 
@@ -90,46 +88,28 @@ namespace TimeTable.Infra
 
         [ExcelColumn("교시12")] //maps the "Employees" property to the "Employee Count" column
         public string time12 { get; set; }
+
         [ExcelColumn("교시13")] //maps the "Employees" property to the "Employee Count" column
         public string time13 { get; set; }
+
         [ExcelColumn("교시14")] //maps the "Employees" property to the "Employee Count" column
         public string time14 { get; set; }
+
         [ExcelColumn("교시15")] //maps the "Employees" property to the "Employee Count" column
         public string time15 { get; set; }
+
         [ExcelColumn("교시16")] //maps the "Employees" property to the "Employee Count" column
         public string time16 { get; set; }
-
+	    // English And ELearn Merge String
         public string EtcClass { get; set; }
 
-
-        public bool CompareTime(ClassInfo item)
-        {
-            foreach (string itemString in item.time_strings)
-            {
-                if (itemString == " ")
-                {
-                    break;
-                }
-                foreach (string thisString in this.time_strings)
-                {
-                    if (thisString == " ")
-                    {
-                        break;
-                    }
-                    if (itemString.IndexOf(thisString) > -1)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-
+	    //TimeScedule Arrange
         public ArrayList time_strings = new ArrayList();
-        public void TimeSetting()
-        {
+        
 
+	    public void TimeSetting()
+        {
+	    //TimeScedule Add
             AddTime(time01);
             AddTime(time02);
             AddTime(time03);
@@ -146,32 +126,33 @@ namespace TimeTable.Infra
             AddTime(time14);
             AddTime(time15);
             AddTime(time16);
-            //time[0] = time01;
-            //time[1] = time02;
-            //time[2] = time03;
-            //time[3] = time04;
-            //time[4] = time05;
-            //time[5] = time06;
-            //time[6] = time07;
-            //time[7] = time08;
-            //time[8] = time09;
-            //time[9] = time10;
-            //time[10] = time11;
-            //time[11] = time12;
-            //time[12] = time13;
-            //time[13] = time14;
-            //time[14] = time15;
-            //time[15] = time16;
-
+            //GridMethodCall
             InitGridInfo();
         }
-
+	
+	//Time Comflict Mehtod
+        public bool CompareTime(ClassInfo item)
+        {
+            foreach (string itemString in item.time_strings)
+            {
+                foreach (string thisString in this.time_strings)
+                {
+                    if (itemString.Equals(thisString))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+	//Time Add Arraylist
         public void AddTime(string str)
         {
             if (!str.Equals(" ")) time_strings.Add(str);
+            
         }
 
-
+	//// English And ELearn Merge Method
         public void settingEtc()
         {
 
@@ -184,7 +165,7 @@ namespace TimeTable.Infra
                 EtcClass += "e";
             }
         }
-
+	//Grid Column Index TimeTable setting
         private int ParseToColumnIndex(string token)
         {
             switch (token)
@@ -197,7 +178,7 @@ namespace TimeTable.Infra
                 default: return -1;
             }
         }
-
+	//Grid Row Index TimeTable setting
         private int ParseToRowIndex(string token)
         {
             switch (token)
@@ -223,8 +204,7 @@ namespace TimeTable.Infra
                 default: return -1;
             }
         }
-        
-        
+               
         private int row;
         public int Row
         {
@@ -245,6 +225,44 @@ namespace TimeTable.Infra
             get { return rowspan; }
             set { SetProperty(ref rowspan, value); }
         }
+        private Brush bg;
+
+        public Brush BG
+        {
+            get
+            {
+                Random Rand = new Random();
+                int ListCount = Rand.Next(1, 21);
+                switch (ListCount)
+                {
+                    case 1: bg = Brushes.LightBlue; break;
+                    case 2: bg = new SolidColorBrush(Colors.LawnGreen); break;
+                    case 4: bg = new SolidColorBrush(Colors.Plum); break;
+                    case 3: bg = new SolidColorBrush(Colors.PeachPuff); break;
+                    case 5: bg = new SolidColorBrush(Colors.SandyBrown); break;
+                    case 6: bg = new SolidColorBrush(Colors.LemonChiffon); break;
+                    case 7: bg = new SolidColorBrush(Colors.Gainsboro); break;
+                    case 8: bg = new SolidColorBrush(Colors.BlanchedAlmond); break;
+                    case 9: bg = new SolidColorBrush(Colors.Tan); break;
+                    case 10: bg = new SolidColorBrush(Colors.LightSalmon); break;
+                    case 11: bg = Brushes.LightSkyBlue; break;
+                    case 12: bg = Brushes.Aquamarine; break;
+                    case 13: bg = Brushes.LightCyan; break;
+                    case 14: bg = Brushes.LightGray; break;
+                    case 15: bg = Brushes.LightSeaGreen; break;
+                    case 16: bg = Brushes.Lavender; break;
+                    case 17: bg = Brushes.Violet; break;
+                    case 18: bg = Brushes.Lime; break;
+                    case 19: bg = Brushes.Turquoise; break;
+                    case 20: bg = Brushes.Tomato; break;
+                    default:
+                        break;
+                }
+                return bg;
+            }
+            set { SetProperty(ref bg, value); }
+        }
+        //TimeTable Grid Information init
         private void InitGridInfo()
         {
             try
