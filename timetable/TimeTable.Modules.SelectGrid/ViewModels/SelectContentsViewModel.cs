@@ -195,7 +195,8 @@ namespace TimeTable.Modules.SelectGrid.ViewModels
 
             if (CurrentItem != null)
             {
-                
+                TotalGrade -= int.Parse(CurrentItem.Grade);
+                ApplyGradeText = "신청학점 : " + TotalGrade + "학점";
                 IEvent.GetEvent<DeleteOneTableEvent>().Publish(CurrentItem);
                 SelectedClassInfos.Remove(CurrentItem);
             }

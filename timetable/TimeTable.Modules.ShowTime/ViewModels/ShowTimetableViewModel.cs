@@ -117,14 +117,53 @@ namespace TimeTable.Modules.ShowTime.ViewModels
         private void Deleteable(object obj)
         {
             ClassInfo classInfo = obj as ClassInfo;
+            classInfo.TimeSetting();
+            ArrayList time = classInfo.time_strings;
+            int colum = 0;
+            int row = 0;
+            List<Point> savePoint = new List<Point>();
+            for (int i = 0; i < time.Count; i++)
+            {
+                string[] s = (time[i]).ToString().Split('/');
+
+                row = int.Parse(s[1].Remove(2)) * 2 - 1;
+
+                if (s[1].Contains("B"))
+                {
+                    row += 1;
+                }
+                switch (s[0])
+                {
+                    case "월":
+                        colum = 2;
+                        break;
+                    case "화":
+                        colum = 3;
+                        break;
+                    case "수":
+                        colum = 4;
+                        break;
+                    case "목":
+                        colum = 5;
+                        break;
+                    case "금":
+                        colum = 6;
+                        break;
+                }
+                savePoint.Add(new Point(colum, row));
+            }
+
             for (int i = 0; i < items.Count; i++)
             {
-
-                if (items[i].Row == classInfo.Row  && items[i].Column == classInfo.Column)
+                foreach (Point deletePoint in savePoint)
                 {
-                    items.RemoveAt(i);
-                    i++;
-                    i--;
+
+                    if (items[i].Row == deletePoint.Y  && items[i].Column == deletePoint.X)
+                    {
+                        items.RemoveAt(i);
+                        i--;
+                        
+                    }
                 }
             }
         }
@@ -135,8 +174,8 @@ namespace TimeTable.Modules.ShowTime.ViewModels
             
             ClassInfo drawInfo = obj as ClassInfo;
 
-        
-            drawInfo.TimeSetting();
+                   drawInfo.TimeSetting();
+ 
             foreach (ClassInfo comparClass in saveClass)
             {
                 if(comparClass.CompareTime(drawInfo)==true)

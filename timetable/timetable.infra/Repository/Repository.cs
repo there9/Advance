@@ -97,11 +97,11 @@ namespace TimeTable.Infra.Model
             set { SetProperty(ref selected_classinfos, value); }
         }
         #endregion
-        private ObservableCollection<ClassInfo> showrect_info;
-        public ObservableCollection<ClassInfo> Showrect_info
+        private ObservableCollection<ClassRect> showrect_info;
+        public ObservableCollection<ClassRect> Showrect_info
         {
             get {
-                if (showrect_info == null) showrect_info = new ObservableCollection<ClassInfo>();
+                if (showrect_info == null) showrect_info = new ObservableCollection<ClassRect>();
                 return showrect_info;
             }
             set { SetProperty(ref showrect_info, value); }
