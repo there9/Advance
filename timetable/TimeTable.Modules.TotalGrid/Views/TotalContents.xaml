@@ -14,21 +14,22 @@
             <RowDefinition Height="193*"/>
         </Grid.RowDefinitions>
 
-        <TextBox Text="{Binding SearchText}" HorizontalAlignment="Left" Height="21.96" Margin="6,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="317.333" AutomationProperties.HelpText="검색...">
+        <TextBox Text="{Binding SearchText}" HorizontalAlignment="Left" Height="auto" Margin="6,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" FontSize="10" AutomationProperties.HelpText="검색...">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="TextChanged">
                     <prism:InvokeCommandAction Command="{Binding SearchTextChangeCommnad}"  />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </TextBox>
-        <ComboBox ItemsSource="{Binding DepartmentType}" Height="auto" Margin="328.333,3,181,0" VerticalAlignment="Top" SelectedIndex="0">
+        <Button Command="{Binding SerchCommand}"  Content="검색" HorizontalAlignment="Left" Height="auto" Margin="98,3,0,0" VerticalAlignment="Top" Width="47" FontSize="10"/>
+        <ComboBox ItemsSource="{Binding DepartmentType}" Height="auto" Margin="159,3,181,0" VerticalAlignment="Top">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
-                    <prism:InvokeCommandAction Command="{Binding DepartmentConvertCommand}" TriggerParameterPath="AddedItems"/>
+                    <prism:InvokeCommandAction Command="{Binding DepartmentConvertCommand}" TriggerParameterPath="AddedItems"/>                
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ComboBox>
-        <Button Command="{Binding MessageCommand}" Foreground="Red" Content="사용안내" HorizontalAlignment="Right" Height="21.96" Margin="0,3,119,0" VerticalAlignment="Top" Width="54" FontSize="10" FontWeight="Bold"/>
+        <Button Command="{Binding MessageCommand}" Foreground="Red" Content="사용안내" HorizontalAlignment="Right" Height="15" Margin="0,3,119,0" VerticalAlignment="Top" Width="54" FontSize="10" FontWeight="Bold"/>
 
         <DataGrid ItemsSource="{Binding DataExcel}" AutoGenerateColumns="False" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="7" Margin="0,0,0,0" IsSynchronizedWithCurrentItem="False" AreRowDetailsFrozen="False" SelectionUnit="FullRow" Background="#FFECBEBE">
             <DataGrid.Columns>

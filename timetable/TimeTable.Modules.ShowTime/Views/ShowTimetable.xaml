@@ -20,7 +20,7 @@
     <ItemsControl ItemsSource="{Binding Items}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <Grid ShowGridLines="True">
+                <Grid ShowGridLines="False">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>

@@ -5,10 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TimeTable.Modules.ShowTime.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="150" Grid.Row="{Binding Row}" Grid.Column="{Binding Column}" Grid.RowSpan="{Binding RowSpan}">
-    <StackPanel Orientation="Vertical" Background="{Binding BG}">
-        <TextBlock Text="{Binding SubjectName}"/>
-        <TextBlock Text="{Binding ProfessorName}" />
-        <TextBlock Text="{Binding ClassNumber}" />
-    </StackPanel>
+             d:DesignHeight="150" d:DesignWidth="150" Grid.Row="{Binding Row}" Grid.Column="{Binding Column}" Grid.RowSpan="{Binding RowSpan}">
+    <Border BorderThickness="1" BorderBrush="Black">
+        <StackPanel Orientation="Vertical" Background="{Binding BG}">
+            <TextBlock Text="{Binding SubjectName}"/>
+            <TextBlock Text="{Binding ProfessorName}" />
+            <TextBlock Text="{Binding ClassNumber}" />
+        </StackPanel>
+    </Border>
 </UserControl>
