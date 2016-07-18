@@ -29,7 +29,7 @@
         <Button Command="{Binding DataSaveCommand}" Content="저장" Grid.Column="3"/>
         <Button Command="{Binding DataLoadCommand}" Content="로드" Grid.Column="4"/>
         <TextBlock Text="{Binding ApplyGradeText}" Grid.Column="5" TextWrapping="Wrap" Grid.ColumnSpan="2" Height="29" VerticalAlignment="Center"/>
-        <DataGrid ItemsSource="{Binding SelectedClassInfos}" SelectedItem="{Binding CurrentItem }" AutoGenerateColumns="False" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="7" Margin="0,0,0,0" IsSynchronizedWithCurrentItem="False" AreRowDetailsFrozen="True" SelectionUnit="FullRow" Background="#FFECBEBE">
+        <DataGrid ItemsSource="{Binding MyClassInfo}" AutoGenerateColumns="False" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="7" Margin="0,0,0,0" IsSynchronizedWithCurrentItem="False" AreRowDetailsFrozen="True" SelectionUnit="FullRow" Background="#FFECBEBE">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="과목코드" Width="2*" Binding="{Binding Code}" IsReadOnly="True"   />
                 <DataGridTextColumn Header="과목명" Width="4*" Binding="{Binding SubjectName}" IsReadOnly="True" />
@@ -45,6 +45,9 @@
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <prism:InvokeCommandAction Command="{Binding DoubleCommand}"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <prism:InvokeCommandAction Command="{Binding SelectItemCommand}" TriggerParameterPath="AddedItems"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </DataGrid>

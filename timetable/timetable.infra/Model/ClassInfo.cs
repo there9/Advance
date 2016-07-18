@@ -100,14 +100,14 @@ namespace TimeTable.Infra
 
         [ExcelColumn("교시16")] //maps the "Employees" property to the "Employee Count" column
         public string time16 { get; set; }
-	    // English And ELearn Merge String
+	// English And ELearn Merge String
         public string EtcClass { get; set; }
 
-	    //TimeScedule Arrange
+	//TimeScedule Arrange
         public ArrayList time_strings = new ArrayList();
         
 
-	    public void TimeSetting()
+	public void TimeSetting()
         {
 	    //TimeScedule Add
             AddTime(time01);
@@ -204,7 +204,8 @@ namespace TimeTable.Infra
                 default: return -1;
             }
         }
-               
+        
+	//Row Column RowSpan Property        
         private int row;
         public int Row
         {
@@ -226,37 +227,38 @@ namespace TimeTable.Infra
             set { SetProperty(ref rowspan, value); }
         }
         private Brush bg;
-
         public Brush BG
         {
             get
             {
                 Random Rand = new Random();
                 int ListCount = Rand.Next(1, 21);
-                switch (ListCount)
-                {
-                    case 1: bg = Brushes.LightBlue; break;
-                    case 2: bg = new SolidColorBrush(Colors.LawnGreen); break;
-                    case 4: bg = new SolidColorBrush(Colors.Plum); break;
-                    case 3: bg = new SolidColorBrush(Colors.PeachPuff); break;
-                    case 5: bg = new SolidColorBrush(Colors.SandyBrown); break;
-                    case 6: bg = new SolidColorBrush(Colors.LemonChiffon); break;
-                    case 7: bg = new SolidColorBrush(Colors.Gainsboro); break;
-                    case 8: bg = new SolidColorBrush(Colors.BlanchedAlmond); break;
-                    case 9: bg = new SolidColorBrush(Colors.Tan); break;
-                    case 10: bg = new SolidColorBrush(Colors.LightSalmon); break;
-                    case 11: bg = Brushes.LightSkyBlue; break;
-                    case 12: bg = Brushes.Aquamarine; break;
-                    case 13: bg = Brushes.LightCyan; break;
-                    case 14: bg = Brushes.LightGray; break;
-                    case 15: bg = Brushes.LightSeaGreen; break;
-                    case 16: bg = Brushes.Lavender; break;
-                    case 17: bg = Brushes.Violet; break;
-                    case 18: bg = Brushes.Lime; break;
-                    case 19: bg = Brushes.Turquoise; break;
-                    case 20: bg = Brushes.Tomato; break;
-                    default:
-                        break;
+                
+                    switch (ListCount)
+                    {
+                        case 1: bg = Brushes.LightBlue; break;
+                        case 2: bg = new SolidColorBrush(Colors.LawnGreen); break;
+                        case 4: bg = new SolidColorBrush(Colors.Plum); break;
+                        case 3: bg = new SolidColorBrush(Colors.PeachPuff); break;
+                        case 5: bg = new SolidColorBrush(Colors.SandyBrown); break;
+                        case 6: bg = new SolidColorBrush(Colors.LemonChiffon); break;
+                        case 7: bg = new SolidColorBrush(Colors.Gainsboro); break;
+                        case 8: bg = new SolidColorBrush(Colors.BlanchedAlmond); break;
+                        case 9: bg = new SolidColorBrush(Colors.Tan); break;
+                        case 10: bg = new SolidColorBrush(Colors.LightSalmon); break;
+                        case 11: bg = Brushes.LightSkyBlue; break;
+                        case 12: bg = Brushes.Aquamarine; break;
+                        case 13: bg = Brushes.LightCyan; break;
+                        case 14: bg = Brushes.LightGray; break;
+                        case 15: bg = Brushes.LightSeaGreen; break;
+                        case 16: bg = Brushes.Lavender; break;
+                        case 17: bg = Brushes.Violet; break;
+                        case 18: bg = Brushes.Lime; break;
+                        case 19: bg = Brushes.Turquoise; break;
+                        case 20: bg = Brushes.Tomato; break;
+                        default:
+                            break;
+                    
                 }
                 return bg;
             }

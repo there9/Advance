@@ -4,7 +4,8 @@
         xmlns:prism="http://prismlibrary.com/"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="TimeTable.Modules.TotalGrid.Views.MainWindow"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}" Height="800" Width="1400">
+        Title="{Binding Title}" Height="800" Width="1400"
+        WindowState="Maximized" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
