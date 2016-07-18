@@ -124,6 +124,7 @@ namespace TimeTable.Modules.ShowTime.ViewModels
                 {
                     items.RemoveAt(i);
                     i--;
+                    i++;
                 }
             }
         }

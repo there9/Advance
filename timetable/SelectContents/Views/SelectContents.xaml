@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="timetable.Modules.SelectGrid.Views.SelectContents"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:timetable.Modules.SelectGrid.Views"
+             mc:Ignorable="d" 
+            xmlns:prism="http://prismlibrary.com/"
+            prism:ViewModelLocator.AutoWireViewModel="True"
+            d:DesignWidth ="300" d:DesignHeight ="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Button Command="{Binding DataDeleteCommand}" Content="▲"/>
+        <Button Command="{Binding DataInitCommand}" Content="초기화" Grid.Column="1"/>
+        <Button Command="{Binding DataInsertCommand}" Content="▼" Grid.Column="2"/>
+        <Button Command="{Binding DataSaveCommand}" Content="저장" Grid.Column="3"/>
+        <Button Command="{Binding DataLoadCommand}" Content="로드" Grid.Column="4"/>
+        <TextBlock Text="{Binding ApplyGradeTextCommand}" Grid.Column="5" TextWrapping="Wrap" Grid.ColumnSpan="2" Height="29" VerticalAlignment="Center"/>
+        <DataGrid DataContext="{Binding Source=Selectlist}" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="7" Margin="0,0,0,0" IsSynchronizedWithCurrentItem="False" AreRowDetailsFrozen="True" SelectionUnit="Cell" Background="#FFECBEBE">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="코드" Width="1*" Binding="{Binding SelectCode}"   />
+                <DataGridTextColumn Header="과목명" Width="1*" />
+                <DataGridTextColumn Header="분반" Width="1*"   />
+                <DataGridTextColumn Header="교수" Width="1*" />
+                <DataGridTextColumn Header="대상" Width="1*"   />
+                <DataGridTextColumn Header="학점" Width="1*" />
+                <DataGridTextColumn Header="설계" Width="1*"   />
+                <DataGridTextColumn Header="비고" Width="1*" />
+                <DataGridTextColumn Header="정원" Width="1*"   />
+                <DataGridTextColumn Header="개설학부" Width="1*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+    </Grid>
+</UserControl>
