@@ -128,37 +128,3 @@ C:\Users\NSTL_DH\Documents\카카오톡 받은 파일\timetable\TimeTable.Infra\
 C:\Users\NSTL_DH\Documents\카카오톡 받은 파일\timetable\TimeTable.Infra\obj\Debug\TimeTable.Infra.pdb
 C:\Users\NSTL_DH\Documents\카카오톡 받은 파일\timetable\TimeTable.Infra\bin\Debug\Newtonsoft.Json.dll
 C:\Users\NSTL_DH\Documents\카카오톡 받은 파일\timetable\TimeTable.Infra\bin\Debug\Newtonsoft.Json.xml
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\TimeTable.Infra.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\TimeTable.Infra.pdb
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\ClosedXML.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\DocumentFormat.OpenXml.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\LinqToExcel.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\log4net.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\Newtonsoft.Json.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\Prism.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\Prism.Wpf.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\Remotion.Data.Linq.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\Remotion.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\Remotion.Interfaces.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\System.Windows.Interactivity.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\ClosedXML.xml
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\LinqToExcel.xml
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\log4net.xml
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\Newtonsoft.Json.xml
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\Prism.xml
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\Prism.Wpf.xml
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\de\System.Windows.Interactivity.resources.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\en\System.Windows.Interactivity.resources.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\es\System.Windows.Interactivity.resources.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\fr\System.Windows.Interactivity.resources.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\it\System.Windows.Interactivity.resources.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\ja\System.Windows.Interactivity.resources.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\ko\System.Windows.Interactivity.resources.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\ru\System.Windows.Interactivity.resources.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\obj\Debug\TimeTable.Infra.csprojResolveAssemblyReference.cache
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\obj\Debug\TimeTable.Infra.Properties.Resources.resources
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\obj\Debug\TimeTable.Infra.csproj.GenerateResource.Cache
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\obj\Debug\TimeTable.Infra.dll
-C:\Users\jinhee\Documents\카카오톡 받은 파일\timetable (5)\TimeTable.Infra\obj\Debug\TimeTable.Infra.pdb

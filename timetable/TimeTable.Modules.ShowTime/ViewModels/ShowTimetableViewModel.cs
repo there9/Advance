@@ -95,36 +95,47 @@ namespace TimeTable.Modules.ShowTime.ViewModels
             ea.GetEvent<InsertOneTableEvent>().Subscribe(DrawInsertTable);
             ea.GetEvent<DeleteOneTableEvent>().Subscribe(Deleteable);
             ea.GetEvent<ClearTableEvent>().Subscribe(ClearTable);
-            ea.GetEvent<LoadImgEvent>().Subscribe(LoadDrawTable);
         }
 
-        private void LoadDrawTable(object obj)
-        {
-            List<ClassInfo> infos = obj as List<ClassInfo>;
-            foreach (ClassInfo info in infos)
-            {
-                DrawInsertTable(info);
-            }
-        }
-
-
+        
 
         //테이블 초기화
         private void ClearTable(object obj)
         {
-            MessageBox.Show("초기화 테이블");
+            for (int i = 0; i < items.Count; i++)
+            {
+                
+                if(items[i].GetType()==typeof(ClassInfo))
+                {
+                    items.RemoveAt(i);
+                    i--;
+                }
+            }
         }
 
         // 테이블 삭제
         private void Deleteable(object obj)
         {
-            MessageBox.Show("삭제 테이블");
+            ClassInfo classInfo = obj as ClassInfo;
+            for (int i = 0; i < items.Count; i++)
+            {
+
+                if (items[i].Row == classInfo.Row  && items[i].Column == classInfo.Column)
+                {
+                    items.RemoveAt(i);
+                    i++;
+                    i--;
+                }
+            }
         }
         List<ClassInfo> saveClass = new List<ClassInfo>();
         // 테이블 삽입 그리기
          private void DrawInsertTable(object obj)
         {
+            
             ClassInfo drawInfo = obj as ClassInfo;
+
+        
             drawInfo.TimeSetting();
             foreach (ClassInfo comparClass in saveClass)
             {

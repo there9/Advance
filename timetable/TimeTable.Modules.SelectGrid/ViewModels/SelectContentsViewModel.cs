@@ -12,6 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TimeTable.Infra;
+using TimeTable.Infra.Model;
 using TimeTable.Modules.TotalGrid;
 
 namespace TimeTable.Modules.SelectGrid.ViewModels
@@ -26,14 +27,22 @@ namespace TimeTable.Modules.SelectGrid.ViewModels
             get { return applyGradeText; }
             set { SetProperty(ref applyGradeText, value); }
         }
-        private List<ClassInfo> myClassInfo;
-        public List<ClassInfo> MyClassInfo
+
+        private ObservableCollection<ClassInfo> selected_classinfos;
+        public ObservableCollection<ClassInfo> SelectedClassInfos
         {
-            get { return myClassInfo; }
-            set { SetProperty(ref myClassInfo, value); }
+            get { return selected_classinfos; }
+            set { SetProperty(ref selected_classinfos, value); }
         }
+
         public int TotalGrade { get; set; }
 
+        private ClassInfo current_item;
+        public ClassInfo CurrentItem
+        {
+            get { return current_item; }
+            set { SetProperty(ref current_item, value); }
+        }
 
 
         //PropertyCommand and EventAggregator
@@ -43,13 +52,14 @@ namespace TimeTable.Modules.SelectGrid.ViewModels
         public ICommand DataSaveCommand { get; set; }
         public ICommand DataLoadCommand { get; set; }
         public ICommand DoubleCommand { get; set; }
-        public ICommand SelectItemCommand { get; set; }
 
         public IEventAggregator IEvent { get; set; }
 
         //ctor
         public SelectContentsViewModel(IEventAggregator iEventAggregator)
         {
+            SelectedClassInfos = Repository.Instance.SelectedClassInfos;
+
             //DelegateCommand 
             DataDeleteCommand = new DelegateCommand(DataDelete);
             DataInitCommand = new DelegateCommand(DataInit);
@@ -57,7 +67,6 @@ namespace TimeTable.Modules.SelectGrid.ViewModels
             DataSaveCommand = new DelegateCommand<object>(DataSave);
             DataLoadCommand = new DelegateCommand<object>(DataLoad);
             DoubleCommand = new DelegateCommand(DataDelete);
-            SelectItemCommand = new DelegateCommand<object>(SelectItem);
 
             //EventAggregator
             IEvent = iEventAggregator;
@@ -66,7 +75,11 @@ namespace TimeTable.Modules.SelectGrid.ViewModels
 
             //init
             ApplyGradeText = "신청학점 : " + TotalGrade + "학점";
+
         }
+
+
+
 
         List<ClassInfo> saveMyClassInfo = new List<ClassInfo>();
 
@@ -75,7 +88,7 @@ namespace TimeTable.Modules.SelectGrid.ViewModels
         {
             ClassInfo info = obj as ClassInfo;
             info.TimeSetting();
-            foreach (ClassInfo item in saveMyClassInfo)
+            foreach (ClassInfo item in SelectedClassInfos)
             {
                 item.TimeSetting();
                 if (info.CompareTime(item) == true)
@@ -86,21 +99,10 @@ namespace TimeTable.Modules.SelectGrid.ViewModels
             }
             TotalGrade += int.Parse(info.Grade);
             ApplyGradeText = "신청학점 : " + TotalGrade + "학점";
-            saveMyClassInfo.Add(info);
-            refresh();
-        }
-        //SelectItemCommand 
-        ClassInfo SelectedClassInfo;
-        private void SelectItem(object obj)
-        {
 
-            IList<object> infoclass = obj as IList<object>;
-            if (isNochange == false && obj != null && infoclass.Count == 1)
-            {
-                SelectedClassInfo = infoclass[0] as ClassInfo;
-            }
-
+            SelectedClassInfos.Add(info);
         }
+       
         //DataInsertCommand 
         private void DataInsertRequest(object obj)
         {
@@ -111,6 +113,7 @@ namespace TimeTable.Modules.SelectGrid.ViewModels
         private void DataLoad(object obj)
         {
             //선택리스트를 text파일로 저장한다.
+
 
             OpenFileDialog oFileDialog = new OpenFileDialog();
             oFileDialog.Filter = "Json Documents (*.json) | *.json";
@@ -123,24 +126,41 @@ namespace TimeTable.Modules.SelectGrid.ViewModels
 
             if (File.Exists(@path))
             {
-                // deserialize JSON directly from a file
-                List<ClassInfo> list = new List<ClassInfo>();
-                using (StreamReader file = File.OpenText(@path))
-                {
-                    JsonSerializer serializer = new JsonSerializer();
-                    list = (List<ClassInfo>)serializer.Deserialize(file, typeof(List<ClassInfo>));
-                }
-                saveMyClassInfo.Clear();
-                TotalGrade = 0;
-                foreach (ClassInfo info in list)
-                {
-                    saveMyClassInfo.Add(info);
-                    TotalGrade += int.Parse(info.Grade);
-                    refresh();
-                }
-                ApplyGradeText = "신청학점 : " + TotalGrade + "학점";
-                IEvent.GetEvent<LoadImgEvent>().Publish(saveMyClassInfo);
+
+                //JToken jToken;
+                //JObject jObject;
+
+                //using (StreamReader file = File.OpenText(@path))
+                //using (JsonTextReader reader = new JsonTextReader(file))
+                //{
+                //    //jObject = JObject.Load(reader);
+                //    jToken = JToken.ReadFrom(reader);
+                //}
+                //jObject = JObject.Parse(jToken.ToString());
+                // string str = jToken.ToString();
+                //ClassInfo jc = JsonConvert.DeserializeObject<ClassInfo>(jToken.ToString());
+
+                //MessageBox.Show(jc.Target.ToString());
+                //SelectedClassInfo.ProfessorName = jt[0]
+
+                //foreach(JToken info in saveMyClassInfo)
+                //{
+
+                //}
+                //List<ClassInfo> classInfos = new List<ClassInfo>();
+
+                // ClassInfo info = JsonConvert.DeserializeObject<ClassInfo>(str);
             }
+            //JsonTextReader reader = new JsonTextReader(new StreamReader(path));
+            //List<string> selectInfo = new List<string>();
+            //IList<object> infoclass = obj as IList<object>;
+            //while (reader.Read())
+            //{
+            //    if (reader.Value != null)
+            //    {
+            //        selectInfo.Add(reader.Value + "");
+            //    }
+            //}
         }
 
         private void DataSave(object obj)
@@ -160,43 +180,25 @@ namespace TimeTable.Modules.SelectGrid.ViewModels
             string path = saveFileDialog.FileName;
             File.WriteAllText(saveFileDialog.FileName, str);
         }
-        //DataInitCommand 
+
+        
         private void DataInit()
         {
-            saveMyClassInfo.Clear();
+            SelectedClassInfos.Clear();
             TotalGrade = 0;
             ApplyGradeText = "신청학점 : " + TotalGrade + "학점";
-            refresh();
             IEvent.GetEvent<ClearTableEvent>().Publish(null);
         }
 
-        //Delete No Change Flag
-        bool isNochange = false;
-
-        //DataDeleteCommand 
         private void DataDelete()
         {
-            if (saveMyClassInfo.Count > 0 && SelectedClassInfo != null)
-            {
-                isNochange = true;
-                TotalGrade -= int.Parse(SelectedClassInfo.Grade);
-                ApplyGradeText = "신청학점 : " + TotalGrade + "학점";
-                saveMyClassInfo.Remove(SelectedClassInfo);
-                refresh();
 
-                IEvent.GetEvent<DeleteOneTableEvent>().Publish(null);
-            }
-            else
+            if (CurrentItem != null)
             {
-                MessageBox.Show("시간표를 삭제할 과목이 2개이상이거나 없습니다.");
+                
+                IEvent.GetEvent<DeleteOneTableEvent>().Publish(CurrentItem);
+                SelectedClassInfos.Remove(CurrentItem);
             }
-            isNochange = false;
-        }
-        //DataGridRefresh
-        private void refresh()
-        {
-            MyClassInfo = null;
-            MyClassInfo = saveMyClassInfo;
         }
     }
 }
