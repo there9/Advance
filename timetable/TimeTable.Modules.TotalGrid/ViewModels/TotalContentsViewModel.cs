@@ -11,13 +11,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TimeTable.Infra;
-using TimeTable.Infra.Model;
 
 namespace TimeTable.Modules.TotalGrid.ViewModels
 {
     public class TotalContentsViewModel : BindableBase
     {
-   
+	//Property
         private List<ClassInfo> dataExcel;
         public List<ClassInfo> DataExcel
         {
@@ -44,7 +43,7 @@ namespace TimeTable.Modules.TotalGrid.ViewModels
             set { SetProperty(ref data, value); }
         }
 
-       
+	//Property Command and EventAggregater
         public ICommand KeyBoradDownCommand { get; set; }
         public ICommand MessageCommand { get; set; }
         public ICommand SearchTextChangeCommnad { get; set; }
@@ -53,19 +52,19 @@ namespace TimeTable.Modules.TotalGrid.ViewModels
         public ICommand DepartmentConvertCommand { get; set; }
         public IEventAggregator IEvent { get; set; }
 
-     
+        //ctor 
         public TotalContentsViewModel(IEventAggregator iEventAggregator)
-        {
+        {            
 
-           
+	    //DelegateCommand   
             MessageCommand = new DelegateCommand(MESSAGE);
             SearchTextChangeCommnad = new DelegateCommand<object>(Search);
             DoubleClickCommand = new DelegateCommand(DataInsert);
             SelectItemCommand = new DelegateCommand<object>(SelectItem);
             DepartmentConvertCommand = new DelegateCommand<object>(DepartmentConvert);
+           
 
-
-            
+	    //ComboBoxLIst init
             DepartmentType.Add("개설학부");
             DepartmentType.Add("컴공");
             DepartmentType.Add("전전통");
@@ -80,31 +79,82 @@ namespace TimeTable.Modules.TotalGrid.ViewModels
             DepartmentType.Add("기계설계");
             DepartmentType.Add("메카융합");
             DepartmentType.Add("기전융합");
+	    
 
-            
-            IEvent = iEventAggregator;
-            iEventAggregator.GetEvent<LoadEvent>().Subscribe(LoadExcel);
+	    //EventAggregator
+	    IEvent = iEventAggregator;
+	    iEventAggregator.GetEvent<LoadEvent>().Subscribe(LoadExcel);
             iEventAggregator.GetEvent<SaveEvent>().Subscribe(RefreshGridView);
             iEventAggregator.GetEvent<RequestAddItemEvent>().Subscribe(DataInsertReq);
         }
-
-     
+	
+	//FunctionProceesing
+	
+	//All has Excel Data
         private List<ClassInfo> saveClassInfo = new List<ClassInfo>();
-        private ClassInfo SelectedClassInfo;
 
 
-
+	//SaveEvent
         private void LoadExcel(object obj)
         {
-            DataExcel = Repository.Instance.TotalClassInfos;
-            saveClassInfo = Repository.Instance.TotalClassInfos;
-        }
+            try
+            {
+                //file loading
 
+                OpenFileDialog oFileDialog = new OpenFileDialog();
+
+                oFileDialog.Filter = "Excel (*.xlsx)|*.xlsx|Excel 97-2003 (*.xls)|*.xls";
+                oFileDialog.InitialDirectory = @"C:\";
+                if (oFileDialog.ShowDialog() == false)
+                {
+                    return;
+                }
+                string path = oFileDialog.FileName;
+
+                //string path = "" + @"C:\Users\jinhee\Desktop\20162160616.xlsx";
+                var excel = new ExcelQueryFactory(path);
+                //excel.DatabaseEngine = DatabaseEngine.Ace;
+
+                string sheetName = "";
+                DataTable dt = new DataTable();
+                //foreach (var a in excel.GetWorksheetNames())
+                //{
+                //    sheetName = a;
+                //    break;
+                //}
+
+                // file reading
+                var ColumnNames = excel.GetColumnNames("Sheet1");
+                var data = from c in excel.WorksheetRange<ClassInfo>("A1", "BB16384", sheetName) select c;
+
+                List<ClassInfo> list = data.ToList<ClassInfo>();
+                foreach (ClassInfo item in list)
+                {
+
+                    if (item.EngClass == "Y")
+                    {
+                        item.EtcClass += "영";
+                    }
+                    if (item.ElearningClass == "Y")
+                    {
+                        item.EtcClass += "e";
+                    }
+                }
+                DataExcel = list;
+                saveClassInfo = list;
+            }
+            catch (InvalidOperationException e)
+            {
+                int k = 4;
+            }
+        }
+	
+	//SearchTextChangeCommnad 
         private void Search(object obj)
         {
-            TextChangedEventArgs o = obj as TextChangedEventArgs;
+            TextChangedEventArgs o =  obj as TextChangedEventArgs;
             TextBox b = o.OriginalSource as TextBox;
-
+            
             DataExcel = saveClassInfo;
             SearchText = b.Text;
 
@@ -135,8 +185,8 @@ namespace TimeTable.Modules.TotalGrid.ViewModels
                     {
                         TempClassInfo.Add(item);
                     }
-
-                    else if (item.EtcClass != null && item.EtcClass.Contains(SearchText))
+       
+                    else if (item.EtcClass !=null && item.EtcClass.Contains(SearchText))
                     {
                         TempClassInfo.Add(item);
                     }
@@ -164,11 +214,11 @@ namespace TimeTable.Modules.TotalGrid.ViewModels
                 }
                 DataExcel = TempClassInfo;
             }
-
+            
         }
 
 
-     
+	//DepartmentConvertCommand 
         private void DepartmentConvert(object obj)
         {
             IList<object> departmentName = obj as IList<object>;
@@ -178,93 +228,81 @@ namespace TimeTable.Modules.TotalGrid.ViewModels
 
             switch (ConvertString)
             {
-                case "개설학부":
-                    ConvertString = "";
+                case "개설학부": ConvertString ="";
                     break;
-                case "컴공":
-                    ConvertString = "컴퓨터공학부";
+                case "컴공": ConvertString ="컴퓨터공학부";
                     break;
-                case "전전통":
-                    ConvertString = "전기ㆍ전자ㆍ통신공학부";
+                case "전전통": ConvertString = "전기ㆍ전자ㆍ통신공학부";
                     break;
-                case "에신화":
-                    ConvertString = "에너지신소재화학공학부";
+                case "에신화": ConvertString ="에너지신소재화학공학부";
                     break;
-                case "산경":
-                    ConvertString = "산업경영학부";
+                case "산경": ConvertString ="산업경영학부";
                     break;
-                case "메카":
-                    ConvertString = "메카트로닉스공학부";
+                case "메카": ConvertString ="메카트로닉스공학부";
                     break;
-                case "기계":
-                    ConvertString = "기계공학부";
+                case "기계": ConvertString = "기계공학부";
                     break;
-                case "문리HRD":
-                    ConvertString = "문리HRD학부";
+                case "문리HRD": ConvertString = "문리HRD학부";
                     break;
-                case "강소기업":
-                    ConvertString = "강소기업경영학과";
+                case "강소기업": ConvertString ="강소기업경영학과";
                     break;
-                case "기계설계":
-                    ConvertString = "기계설계공학과";
+                case "기계설계": ConvertString ="기계설계공학과";
                     break;
-                case "메카융합":
-                    ConvertString = "메카IT융합공학과";
+                case "메카융합": ConvertString ="메카IT융합공학과";
                     break;
-                case "기전융합":
-                    ConvertString = "기전융합공학과";
+                case "기전융합": ConvertString ="기전융합공학과";
                     break;
-                case "디공,건축":
-                    ConvertString = "디자인ㆍ건축공학부";
+                case "디공,건축": ConvertString = "디자인ㆍ건축공학부";
                     break;
                 default:
                     ConvertString = "";
                     break;
             }
-            if (ConvertString != "")
-            {
+            if(ConvertString!= "")
+            { 
                 List<ClassInfo> TempClassInfo = new List<ClassInfo>();
 
                 foreach (ClassInfo item in DataExcel)
                 {
-                    if (item.Department == ConvertString)
+                    if(item.Department == ConvertString)
                     {
                         TempClassInfo.Add(item);
                     }
                 }
                 DataExcel = TempClassInfo;
             }
-
+            
         }
 
-       
+	//SelectItemCommand 
+        ClassInfo SelectedClassInfo;
         private void SelectItem(object obj)
         {
-
-            IList<object> infoclass = obj as IList<object>;
-            if (infoclass.Count == 1)
-            {
-                SelectedClassInfo = infoclass[0] as ClassInfo;
-            }
+          
+                IList<object> infoclass = obj as IList<object>;
+                if (infoclass.Count == 1)
+                {
+                    SelectedClassInfo = infoclass[0] as ClassInfo;
+                }
         }
 
-      
+        //RequestAddItemEvent
         private void DataInsertReq(object obj)
         {
             DataInsert();
         }
 
-
-       
+        
+	//DoubleClickCommand 
         private void DataInsert()
         {
-          
-            if (SelectedClassInfo != null)
+            //추가버튼을 눌렀을 때 publish를 보낸다. 그 전에 그 리스트를 삭제한다.
+            if(SelectedClassInfo != null)
             {
                 IEvent.GetEvent<InsertOneTableEvent>().Publish(SelectedClassInfo);
             }
         }
-        //SaveEvent
+	//SaveEvent
         private void RefreshGridView(object obj)
         {
             //???
@@ -274,7 +312,7 @@ namespace TimeTable.Modules.TotalGrid.ViewModels
         {
             MessageBox.Show("과목 검색");
         }
-        //MessageCommand 
+	//MessageCommand 
         private void MESSAGE()
         {
             MessageBox.Show("도움말 출력");
