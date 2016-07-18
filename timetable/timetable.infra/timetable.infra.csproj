@@ -94,10 +94,8 @@
   <ItemGroup>
     <Compile Include="Model\ClassInfo.cs" />
     <Compile Include="Event\Event.cs" />
-    <Compile Include="Model\ClassRect.cs" />
     <Compile Include="Model\IGridInfo.cs" />
     <Compile Include="Model\LabelInfo.cs" />
-    <Compile Include="Repository\Repository.cs" />
     <Compile Include="Model\TypeOfConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
