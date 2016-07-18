@@ -95,9 +95,20 @@ namespace TimeTable.Modules.ShowTime.ViewModels
             ea.GetEvent<InsertOneTableEvent>().Subscribe(DrawInsertTable);
             ea.GetEvent<DeleteOneTableEvent>().Subscribe(Deleteable);
             ea.GetEvent<ClearTableEvent>().Subscribe(ClearTable);
+            ea.GetEvent<LoadImgEvent>().Subscribe(LoadDataTable);
         }
 
-        
+        private void LoadDataTable(object obj)
+        {
+            if (obj is ObservableCollection<ClassInfo>)
+            {
+                ObservableCollection<ClassInfo> infos = obj as ObservableCollection<ClassInfo>;
+                foreach (ClassInfo info in infos)
+                {
+                    DrawInsertTable(info);
+                }
+            }
+        }
 
         //테이블 초기화
         private void ClearTable(object obj)
@@ -128,13 +139,12 @@ namespace TimeTable.Modules.ShowTime.ViewModels
                 }
             }
         }
+
         List<ClassInfo> saveClass = new List<ClassInfo>();
         // 테이블 삽입 그리기
          private void DrawInsertTable(object obj)
         {
-            
             ClassInfo drawInfo = obj as ClassInfo;
-
         
             drawInfo.TimeSetting();
             foreach (ClassInfo comparClass in saveClass)
@@ -187,7 +197,7 @@ namespace TimeTable.Modules.ShowTime.ViewModels
                 if (spanPoint.X != pt.X || pt.Y - spanPoint.Y != spanCount)
                 {
 
-                    Items.Add(new ClassInfo() { RowSpan = spanCount, Row = (int)(spanPoint.Y), Column = (int)(spanPoint.X), SubjectName = drawInfo.SubjectName, ProfessorName = drawInfo.ProfessorName, ClassNumber = drawInfo.ClassNumber });
+                    Items.Add(new ClassInfo() { RowSpan = spanCount, Row = (int)(spanPoint.Y), Column = (int)(spanPoint.X), SubjectName = drawInfo.SubjectName, ProfessorName = drawInfo.ProfessorName, ClassNumber = drawInfo.ClassNumber, BG = drawInfo.BG });
                     spanPoint = new Point(pt.X, pt.Y);
                     spanCount = 1;
                 }
@@ -197,9 +207,8 @@ namespace TimeTable.Modules.ShowTime.ViewModels
 
                 }
             }
-            Items.Add(new ClassInfo() { RowSpan = spanCount, Row = (int)(spanPoint.Y), Column = (int)(spanPoint.X), SubjectName = drawInfo.SubjectName, ProfessorName = drawInfo.ProfessorName, ClassNumber = drawInfo.ClassNumber });
+            Items.Add(new ClassInfo() { RowSpan = spanCount, Row = (int)(spanPoint.Y), Column = (int)(spanPoint.X), SubjectName = drawInfo.SubjectName, ProfessorName = drawInfo.ProfessorName, ClassNumber = drawInfo.ClassNumber, BG = drawInfo.BG });
         }
-
 
 
         void SaveUsingEncoder(FrameworkElement visual, string fileName, BitmapEncoder encoder)

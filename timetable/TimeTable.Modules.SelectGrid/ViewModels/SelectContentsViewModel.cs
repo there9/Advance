@@ -75,14 +75,8 @@ namespace TimeTable.Modules.SelectGrid.ViewModels
 
             //init
             ApplyGradeText = "신청학점 : " + TotalGrade + "학점";
-
         }
-
-
-
-
-        List<ClassInfo> saveMyClassInfo = new List<ClassInfo>();
-
+        
         //DataInsertCommand 
         private void DataInsert(object obj)
         {
@@ -107,65 +101,32 @@ namespace TimeTable.Modules.SelectGrid.ViewModels
         private void DataInsertRequest(object obj)
         {
             IEvent.GetEvent<RequestAddItemEvent>().Publish(null);
-
         }
+        
+        private ObservableCollection<ClassInfo> _saveMyClassInfo;
+        public ObservableCollection<ClassInfo> SaveMyClassInfo
+        {
+            get { return _saveMyClassInfo; }
+            set { SetProperty(ref _saveMyClassInfo, value); }
+        }
+
         //DataLoadCommand 
         private void DataLoad(object obj)
         {
-            //선택리스트를 text파일로 저장한다.
+            SaveMyClassInfo = Repository.Instance.GetFileData();
+            IEvent.GetEvent<LoadImgEvent>().Publish(SaveMyClassInfo);
 
-
-            OpenFileDialog oFileDialog = new OpenFileDialog();
-            oFileDialog.Filter = "Json Documents (*.json) | *.json";
-            oFileDialog.InitialDirectory = @"C:\";
-            if (oFileDialog.ShowDialog() == false)
+            TotalGrade = 0;
+            foreach (ClassInfo info in SaveMyClassInfo)
             {
-                return;
+                TotalGrade += int.Parse(info.Grade);
             }
-            string path = oFileDialog.FileName;
-
-            if (File.Exists(@path))
-            {
-
-                //JToken jToken;
-                //JObject jObject;
-
-                //using (StreamReader file = File.OpenText(@path))
-                //using (JsonTextReader reader = new JsonTextReader(file))
-                //{
-                //    //jObject = JObject.Load(reader);
-                //    jToken = JToken.ReadFrom(reader);
-                //}
-                //jObject = JObject.Parse(jToken.ToString());
-                // string str = jToken.ToString();
-                //ClassInfo jc = JsonConvert.DeserializeObject<ClassInfo>(jToken.ToString());
-
-                //MessageBox.Show(jc.Target.ToString());
-                //SelectedClassInfo.ProfessorName = jt[0]
-
-                //foreach(JToken info in saveMyClassInfo)
-                //{
-
-                //}
-                //List<ClassInfo> classInfos = new List<ClassInfo>();
-
-                // ClassInfo info = JsonConvert.DeserializeObject<ClassInfo>(str);
-            }
-            //JsonTextReader reader = new JsonTextReader(new StreamReader(path));
-            //List<string> selectInfo = new List<string>();
-            //IList<object> infoclass = obj as IList<object>;
-            //while (reader.Read())
-            //{
-            //    if (reader.Value != null)
-            //    {
-            //        selectInfo.Add(reader.Value + "");
-            //    }
-            //}
+            ApplyGradeText = "신청학점 : " + TotalGrade + "학점";
         }
 
         private void DataSave(object obj)
         {
-            string str = JsonConvert.SerializeObject(saveMyClassInfo);
+            string str = JsonConvert.SerializeObject(SaveMyClassInfo);
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Json Documents (*.json) | *.json";

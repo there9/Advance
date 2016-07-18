@@ -128,3 +128,41 @@ C:\Users\NSTL_DH\Documents\카카오톡 받은 파일\timetable\TimeTable.Module
 C:\Users\NSTL_DH\Documents\카카오톡 받은 파일\timetable\TimeTable.Modules.SelectGrid\obj\Debug\TimeTable.Modules.SelectGrid.csproj.GenerateResource.Cache
 C:\Users\NSTL_DH\Documents\카카오톡 받은 파일\timetable\TimeTable.Modules.SelectGrid\bin\Debug\Newtonsoft.Json.dll
 C:\Users\NSTL_DH\Documents\카카오톡 받은 파일\timetable\TimeTable.Modules.SelectGrid\bin\Debug\Newtonsoft.Json.xml
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\TimeTable.Modules.SelectGrid.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\TimeTable.Modules.SelectGrid.pdb
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\Newtonsoft.Json.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\Prism.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\Prism.Wpf.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\TimeTable.Infra.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\TimeTable.Modules.TotalGrid.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\LinqToExcel.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\Remotion.Data.Linq.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\log4net.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\TimeTable.Infra.pdb
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\TimeTable.Modules.TotalGrid.pdb
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\Newtonsoft.Json.xml
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\Prism.xml
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\Prism.Wpf.xml
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\LinqToExcel.xml
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\log4net.xml
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\de\System.Windows.Interactivity.resources.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\en\System.Windows.Interactivity.resources.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\es\System.Windows.Interactivity.resources.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\fr\System.Windows.Interactivity.resources.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\it\System.Windows.Interactivity.resources.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\ja\System.Windows.Interactivity.resources.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\ko\System.Windows.Interactivity.resources.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\ru\System.Windows.Interactivity.resources.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\obj\Debug\TimeTable.Modules.SelectGrid.csprojResolveAssemblyReference.cache
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\obj\Debug\Views\SelectContents.g.cs
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\obj\Debug\TimeTable.Modules.SelectGrid_MarkupCompile.cache
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\obj\Debug\TimeTable.Modules.SelectGrid_MarkupCompile.lref
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\obj\Debug\Views\SelectContents.baml
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\obj\Debug\TimeTable.Modules.SelectGrid.g.resources
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\obj\Debug\TimeTable.Modules.SelectGrid.Properties.Resources.resources
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\obj\Debug\TimeTable.Modules.SelectGrid.csproj.GenerateResource.Cache
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\obj\Debug\TimeTable.Modules.SelectGrid.dll
+C:\Users\mimoPC\Documents\GitHub\Advance\timetable\TimeTable.Modules.SelectGrid\obj\Debug\TimeTable.Modules.SelectGrid.pdb

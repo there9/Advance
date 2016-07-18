@@ -1,10 +1,12 @@
 ﻿using LinqToExcel;
 using Microsoft.Win32;
+using Newtonsoft.Json;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +30,6 @@ namespace TimeTable.Infra.Model
 
         }
         #endregion
-
 
         #region Total Class Infos
 
@@ -97,6 +98,7 @@ namespace TimeTable.Infra.Model
             set { SetProperty(ref selected_classinfos, value); }
         }
         #endregion
+
         private ObservableCollection<ClassInfo> showrect_info;
         public ObservableCollection<ClassInfo> Showrect_info
         {
@@ -110,5 +112,49 @@ namespace TimeTable.Infra.Model
         {
             return null;
         }
+
+
+        #region File Load
+
+        private ObservableCollection<ClassInfo> _loadFileData;
+        public ObservableCollection<ClassInfo> LoadFileData
+        {
+            get { return _loadFileData; }
+            set { SetProperty(ref _loadFileData, value); }
+        }
+
+        public ObservableCollection<ClassInfo> GetFileData()
+        {
+            OpenFileDialog oFileDialog = new OpenFileDialog();
+            oFileDialog.Filter = "Json Documents (*.json) | *.json";
+            oFileDialog.InitialDirectory = @"C:\";
+
+            LoadFileData = new ObservableCollection<ClassInfo>();
+
+            if (oFileDialog.ShowDialog()==true)
+            {
+                string path = oFileDialog.FileName;
+
+                if (File.Exists(@path))
+                {
+                    // deserialize JSON directly from a file
+                    List<ClassInfo> list = new List<ClassInfo>();
+                    using (StreamReader file = File.OpenText(@path))
+                    {
+                        JsonSerializer serializer = new JsonSerializer();
+                        list = (List<ClassInfo>)serializer.Deserialize(file, typeof(List<ClassInfo>));
+                    }
+                    LoadFileData.Clear();
+                    foreach (ClassInfo info in list)
+                    {
+                        LoadFileData.Add(info);
+                    }
+                }
+            }
+
+            return LoadFileData;
+        } 
+        
+        #endregion
     }
 }

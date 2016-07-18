@@ -24,5 +24,7 @@ namespace TimeTable.Infra
     //SelectTiemTable 하나 삽입 버튼 또는 더블클릭 눌렀을 때의 이벤트 (pub SelectTimeTable)(Sub ShowTimeTable)
     public class RequestAddItemEvent : PubSubEvent<object> { }
 
+    public class LoadImgEvent : PubSubEvent<object> { }
+
 
 }
