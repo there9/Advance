@@ -123,8 +123,8 @@ namespace TimeTable.Modules.ShowTime.ViewModels
                 if (items[i].Row == classInfo.Row  && items[i].Column == classInfo.Column)
                 {
                     items.RemoveAt(i);
-                    i--;
                     i++;
+                    i--;
                 }
             }
         }
